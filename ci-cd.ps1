@@ -28,7 +28,7 @@ minikube docker-env | Invoke-Expression
 # -----------------------------------
 # 3. Build Docker Image
 # -----------------------------------
-$IMAGE_NAME = "class-btech:dev"
+$IMAGE_NAME = "btech1:dev"
 Write-Host "Building Docker image $IMAGE_NAME ..." -ForegroundColor Cyan
 
 try {
