@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - Class Website</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <nav class="navbar">
@@ -23,11 +24,17 @@
   <main class="container">
     <h1>Contact</h1>
     <section class="contact-section">
-      <div class="about-content" style="max-width:800px; margin: 1.5rem auto;">
+        <div class="about-content" style="max-width:800px; margin: 1.5rem auto;">
+          <div style="margin-top:2rem;">
+            <h2>Our Location</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15948.492!2d30.5432853!3d-2.1485233!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19c4ca8ec4174a05%3A0x26fd1d6d9e6a1000!2sIntegrated+Polytechnic+Regional+College+of+Ngoma+(IPRC+Ngoma)!5e0!3m2!1sen!2s!4v1700000000!5m2!1sen!2s" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
         <p>If you have questions about the course, project, or assignments, send a message using the form below. We'll get back to you as soon as possible.</p>
 
-        <form id="contactForm" action="/contact" method="POST" style="margin-top:1.5rem;">
+        <form id="contactForm" action="https://formsubmit.co/ndayizeyekevin6@gmail.com" method="POST" style="margin-top:1.5rem;">
           <div style="display:grid; gap:1rem;">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="localhost/b-tech/contact.html?sent=1">
             <input type="text" name="name" placeholder="Your name" required class="search-input">
             <input type="email" name="email" placeholder="Your email" required class="search-input">
             <input type="text" name="subject" placeholder="Subject (optional)" class="search-input">
@@ -46,6 +53,7 @@
         <div id="error" style="display:none; margin-top:1rem; padding:1rem; border-radius:8px; background:#fff2f0; color:#7a1f1f; font-weight:700;">
           There was an error sending your message. Please try again.
         </div>
+
       </div>
     </section>
   </main>
@@ -59,7 +67,12 @@
     (function(){
       const qs = new URLSearchParams(window.location.search);
       if (qs.get('sent')) {
-        document.getElementById('feedback').style.display = 'block';
+        Swal.fire({
+          icon: 'success',
+          title: 'Message Sent!',
+          text: 'Thank you! We\'ll reply shortly.',
+          confirmButtonText: 'OK'
+        });
       }
       if (qs.get('error')) {
         document.getElementById('error').style.display = 'block';
